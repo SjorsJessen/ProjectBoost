@@ -5,13 +5,13 @@ using UnityEngine;
 
 public class Rocket : MonoBehaviour
 {
-    // Start is called before the first frame update
+    private Rigidbody _rigidbody;
+
     void Start()
     {
-        
+        _rigidbody = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         ProcessInput();
@@ -21,7 +21,7 @@ public class Rocket : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Space))
         {
-            Debug.Log("Thrusting");
+            _rigidbody.AddRelativeForce(Vector3.up);
         }
 
         if (Input.GetKey(KeyCode.A))
