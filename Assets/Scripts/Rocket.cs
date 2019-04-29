@@ -9,7 +9,7 @@ public class Rocket : MonoBehaviour
     private AudioSource _audioSource;
 
     [SerializeField] private float rcsThrust = 100f;
-    protected float TestValue = 250f;
+    [SerializeField] private float mainThrust = 200f;
 
     protected void Start()
     {
@@ -43,9 +43,11 @@ public class Rocket : MonoBehaviour
 
     private void ThrustRocket()
     {
+        float thrustPower = mainThrust * Time.deltaTime;
+
         if (Input.GetKey(KeyCode.Space))
         {
-            _rigidbody.AddRelativeForce(Vector3.up);
+            _rigidbody.AddRelativeForce(Vector3.up * thrustPower);
 
             if (!_audioSource.isPlaying)
             {
