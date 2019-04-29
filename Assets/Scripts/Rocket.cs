@@ -6,10 +6,13 @@ using UnityEngine;
 public class Rocket : MonoBehaviour
 {
     private Rigidbody _rigidbody;
+    private AudioSource _audioSource;
+    private bool isPlaying;
 
     void Start()
     {
         _rigidbody = GetComponent<Rigidbody>();
+        _audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -22,6 +25,15 @@ public class Rocket : MonoBehaviour
         if (Input.GetKey(KeyCode.Space))
         {
             _rigidbody.AddRelativeForce(Vector3.up);
+
+            if (!_audioSource.isPlaying)
+            {
+                _audioSource.Play();
+            }             
+        }
+        else
+        {
+            _audioSource.Stop();
         }
 
         if (Input.GetKey(KeyCode.A))
@@ -32,5 +44,10 @@ public class Rocket : MonoBehaviour
         {
             transform.Rotate(Vector3.back);
         }
+    }
+
+    public void ClassTest()
+    {
+        Debug.Log("Fire at same speed");
     }
 }
