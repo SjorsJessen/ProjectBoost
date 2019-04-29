@@ -14,7 +14,8 @@ public class Laser : Rocket
     {
         if (Input.GetKeyDown(KeyCode.F))
         {
-            ClassTest();
+            FireProjectile();
+            Debug.Log("TestValue: " + TestValue);
         }
     }
 }
