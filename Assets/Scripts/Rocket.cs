@@ -23,6 +23,31 @@ public class Rocket : MonoBehaviour
         Rotate();
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        LayerFunctionalities(collision);
+    }
+
+    private static void LayerFunctionalities(Collision collision)
+    {
+        switch (collision.gameObject.tag)
+        {
+            case "Friendly":
+                Debug.Log("Friendly layer"); //Todo: remove this line
+                break;
+            case "Fuel":
+                Debug.Log("Your fuel is increased");
+                break;
+            case "Finish":
+                Debug.Log("You finished the game!");
+                break;
+            default:
+                Debug.Log("You died");
+                //Todo: Create function to kill the player and restart the level
+                break;
+        }
+    }
+
     private void Rotate()
     {
         _rigidbody.freezeRotation = true; //Take manual control of rotation
